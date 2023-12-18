@@ -20,26 +20,24 @@ internal sealed class Day18 : IMrWolf
 
         foreach (var instruction in instructions)
         {
-            for (var i = 0; i < instruction.Length; i++)
-            {
-                pos = NextPosition(pos, instruction.Dir);
-                points.Add(pos);
-            }
+            pos = NextPosition(pos, instruction);
+            points.Add(pos);
         }
 
         // https://en.wikipedia.org/wiki/Shoelace_formula
         // https://en.wikipedia.org/wiki/Pick%27s_theorem
         var area = CalculateArea(points);
-        return area + points.Count / 2 + 1;
+        var perimeter = instructions.Sum(i => i.Length);
+        return area + perimeter / 2 + 1;
     }
 
-    private static Pos NextPosition(Pos pos, string dir)
-        => dir switch
+    private static Pos NextPosition(Pos pos, Instruction instruction)
+        => instruction.Dir switch
         {
-            "U" => pos with {Y = pos.Y - 1},
-            "D" => pos with {Y = pos.Y + 1},
-            "L" => pos with {X = pos.X - 1},
-            "R" => pos with {X = pos.X + 1},
+            "U" => pos with {Y = pos.Y - instruction.Length},
+            "D" => pos with {Y = pos.Y + instruction.Length},
+            "L" => pos with {X = pos.X - instruction.Length},
+            "R" => pos with {X = pos.X + instruction.Length},
             _ => throw new ShouldNeverHappenException(),
         };
 
