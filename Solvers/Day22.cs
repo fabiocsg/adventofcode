@@ -104,7 +104,7 @@ internal sealed class Day22 : IMrWolf
                 .Select(int.Parse)
                 .ToArray()
             )
-            .Select((v, i) => new Brick(new Range(v[0], v[3]), new Range(v[1], v[4]), new Range(v[2], v[5])));
+            .Select(v => new Brick(new Range(v[0], v[3]), new Range(v[1], v[4]), new Range(v[2], v[5])));
 
     private sealed record Brick(Range X, Range Y, Range Z);
 
