@@ -20,22 +20,39 @@ internal sealed class Day23 : IMrWolf
         var roadMap = links
             .GroupBy(l => l.From)
             .ToDictionary(g => g.Key);
-        
+
+        var endLink = links.Single(l => l.To == end);
+
         var maxLength = 0;
         var queue = new Queue<Context>();
         queue.Enqueue(new Context(start, ImmutableHashSet.Create(start), 0));
-        
+
         while (queue.TryDequeue(out var current))
         {
             if (current.Pos == end)
             {
-                maxLength = Math.Max(maxLength, current.Distance);
+                maxLength = Math.Max(maxLength, current.TotalDistance);
                 continue;
             }
-        
+
             foreach (var link in roadMap[current.Pos].Where(l => !current.Visited.Contains(l.To)))
             {
-                queue.Enqueue(new Context(link.To, current.Visited.Add(link.To), current.Distance + link.Distance));
+                // the only path to the end is from a single node..
+                // if that node is visited and the destination is not the end node we
+                // can discard the path because it will never reach the end node.
+                // (this condition cut the execution time for part2 from ~60s to ~30s)
+                if (link.From == endLink.From && link != endLink)
+                {
+                    continue;
+                }
+
+                queue.Enqueue(new Context
+                    (
+                        link.To,
+                        current.Visited.Add(link.To),
+                        current.TotalDistance + link.Distance
+                    )
+                );
             }
         }
 
@@ -75,7 +92,7 @@ internal sealed class Day23 : IMrWolf
 
         foreach (var path in paths)
         {
-            var visited = ImmutableArray<Pos>.Empty.Add(from);
+            var visited = new List<Pos> {from};
             var next = path;
 
             for (var steps = 1;; steps++)
@@ -96,7 +113,7 @@ internal sealed class Day23 : IMrWolf
                     break;
                 }
 
-                visited = visited.Add(next);
+                visited.Add(next);
                 next = nextPositions[0];
 
                 if (next == end)
@@ -148,7 +165,7 @@ internal sealed class Day23 : IMrWolf
         public override string ToString() => $"Y = {Y}; X = {X}";
     };
 
-    private sealed record Context(Pos Pos, ImmutableHashSet<Pos> Visited, int Distance);
+    private sealed record Context(Pos Pos, ImmutableHashSet<Pos> Visited, int TotalDistance);
 
     private sealed record Link(Pos From, Pos To, int Distance);
 }
