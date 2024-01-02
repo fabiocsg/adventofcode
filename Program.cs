@@ -1,6 +1,5 @@
 ﻿using System.Diagnostics;
 using System.Reflection;
-using aoc2023.Core;
 
 namespace aoc2023;
 
@@ -39,8 +38,8 @@ internal class Program
     {
         var sw = Stopwatch.StartNew();
         var result = func.Invoke();
-        Console.WriteLine($"{name}: {result}");
         sw.Stop();
+        Console.WriteLine($"{name}: {result}");
         Console.WriteLine($"Solved in {sw.Elapsed.TotalSeconds}s");
         Console.WriteLine();
     }

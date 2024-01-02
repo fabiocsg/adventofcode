@@ -1,5 +1,3 @@
-using aoc2023.Core;
-
 namespace aoc2023.Solvers;
 
 [Day(12)]
@@ -63,7 +61,7 @@ internal sealed class Day12 : IMrWolf
 
         var available = record.Split('.')[0].Length;
         var scanLength = groups[0];
-        
+
         if (available < scanLength)
         {
             // not enough # or ? to satisfy the current group
@@ -74,7 +72,7 @@ internal sealed class Day12 : IMrWolf
         {
             return Scan(string.Empty, groups[1..]);
         }
-        
+
         if (record[scanLength] == '#')
         {
             // took me way too long to figure this out: when there's a match the next

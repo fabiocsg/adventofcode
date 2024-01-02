@@ -1,5 +1,3 @@
-using aoc2023.Core;
-
 namespace aoc2023.Solvers;
 
 [Day(13)]
@@ -21,6 +19,7 @@ internal sealed class Day13 : IMrWolf
         var entries = pattern.Split('\n');
 
         var horizontal = FindReflection(entries, smudges);
+
         if (horizontal >= 0)
         {
             return 100 * (horizontal + 1);
@@ -28,6 +27,7 @@ internal sealed class Day13 : IMrWolf
 
         entries = Rotate(entries);
         var vertical = FindReflection(entries, smudges);
+
         if (vertical >= 0)
         {
             return vertical + 1;

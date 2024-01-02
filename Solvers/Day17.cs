@@ -1,12 +1,10 @@
-using aoc2023.Core;
-
 namespace aoc2023.Solvers;
 
 [Day(17)]
 internal sealed class Day17 : IMrWolf
 {
-    private char[][] _grid = null!;
     private Context _ctx = null!;
+    private char[][] _grid = null!;
     private PriorityQueue<State, int> _queue = null!;
 
     public object SolvePart1(string input)
@@ -85,7 +83,7 @@ internal sealed class Day17 : IMrWolf
 
         foreach (var move in possibleMoves)
         {
-            if (state.From == move.Item1 && state.StraightMoves == _ctx.MaxStraight || !IsInBounds(move.Item2, _grid))
+            if ((state.From == move.Item1 && state.StraightMoves == _ctx.MaxStraight) || !IsInBounds(move.Item2, _grid))
             {
                 continue;
             }

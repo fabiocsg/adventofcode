@@ -1,5 +1,3 @@
-using aoc2023.Core;
-
 namespace aoc2023.Solvers;
 
 [Day(15)]
@@ -53,11 +51,12 @@ internal sealed class Day15 : IMrWolf
     private static Lens ParseLens(string source)
     {
         var parts = source.Split(new[] {'-', '='}, StringSplitOptions.RemoveEmptyEntries);
+
         return new Lens
         {
             Label = parts[0],
-            FocalLength = parts.Length == 2 
-                ? parts[1] 
+            FocalLength = parts.Length == 2
+                ? parts[1]
                 : null,
         };
     }

@@ -1,5 +1,3 @@
-using aoc2023.Core;
-
 namespace aoc2023.Solvers;
 
 [Day(10)]

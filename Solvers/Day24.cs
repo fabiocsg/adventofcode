@@ -1,5 +1,3 @@
-using aoc2023.Core;
-
 namespace aoc2023.Solvers;
 
 [Day(24)]
@@ -23,7 +21,7 @@ internal sealed class Day24 : IMrWolf
         var c = SolveEquation(hailstones)
             .Select(x => Convert.ToInt64(Math.Round(x)))
             .ToArray();
-        
+
         var rock = new Hailstone(new Vec(c[0], c[1], c[2]), new Vec(c[3], c[4], c[5]));
         return rock.Pos.X + rock.Pos.Y + rock.Pos.Z;
     }
@@ -115,7 +113,7 @@ internal sealed class Day24 : IMrWolf
             h1.Pos.Y - h2.Pos.Y, // RVX
             h2.Pos.X - h1.Pos.X, // RVY
             decimal.Zero, // RVZ
-            h1.Pos.Y * h1.Vel.X - h1.Pos.X * h1.Vel.Y - h2.Pos.Y * h2.Vel.X + h2.Pos.X * h2.Vel.Y
+            h1.Pos.Y * h1.Vel.X - h1.Pos.X * h1.Vel.Y - h2.Pos.Y * h2.Vel.X + h2.Pos.X * h2.Vel.Y,
         };
 
     // ReSharper disable once InconsistentNaming
@@ -129,7 +127,7 @@ internal sealed class Day24 : IMrWolf
             h1.Pos.Z - h2.Pos.Z, // RVX
             decimal.Zero, // RVY
             h2.Pos.X - h1.Pos.X, // RVZ
-            h1.Pos.Z * h1.Vel.X - h1.Pos.X * h1.Vel.Z - h2.Pos.Z * h2.Vel.X + h2.Pos.X * h2.Vel.Z
+            h1.Pos.Z * h1.Vel.X - h1.Pos.X * h1.Vel.Z - h2.Pos.Z * h2.Vel.X + h2.Pos.X * h2.Vel.Z,
         };
 
     // ReSharper disable once InconsistentNaming
@@ -143,7 +141,7 @@ internal sealed class Day24 : IMrWolf
             decimal.Zero, // RVX
             h1.Pos.Z - h2.Pos.Z, // RVY
             h2.Pos.Y - h1.Pos.Y, // RVZ
-            h1.Pos.Z * h1.Vel.Y - h1.Pos.Y * h1.Vel.Z - h2.Pos.Z * h2.Vel.Y + h2.Pos.Y * h2.Vel.Z
+            h1.Pos.Z * h1.Vel.Y - h1.Pos.Y * h1.Vel.Z - h2.Pos.Z * h2.Vel.Y + h2.Pos.Y * h2.Vel.Z,
         };
 
     private static decimal[] SolveMatrix(decimal[][] matrix)
@@ -191,7 +189,7 @@ internal sealed class Day24 : IMrWolf
             }
         }
     }
-    
+
     private static decimal[] BackSubstitution(decimal[][] matrix)
     {
         // https://en.wikipedia.org/wiki/Triangular_matrix#Forward_and_back_substitution

@@ -1,5 +1,4 @@
 using System.Collections.Immutable;
-using aoc2023.Core;
 
 namespace aoc2023.Solvers;
 
@@ -163,7 +162,7 @@ internal sealed class Day23 : IMrWolf
         public Pos Left => this with {X = X - 1};
 
         public override string ToString() => $"Y = {Y}; X = {X}";
-    };
+    }
 
     private sealed record Context(Pos Pos, ImmutableHashSet<Pos> Visited, int TotalDistance);
 
