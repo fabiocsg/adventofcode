@@ -14,7 +14,7 @@ class Day10 : MrWolf {
             .asSequence()
             .filter { it.value == 0 }
             .map { it.key }
-            .map { trailheadsFrom(it, map) }
+            .map { findPeaksFrom(it, map) }
             .map { if (countDifferentPaths) it else it.distinct() }
             .sumOf { it.size }
     }
@@ -24,7 +24,7 @@ class Day10 : MrWolf {
             line.mapIndexed { x, char -> Pos(y, x) to char.digitToInt() }
         }.toMap()
 
-    private fun trailheadsFrom(pos: Pos, map: Map<Pos, Int>): List<Pos> {
+    private fun findPeaksFrom(pos: Pos, map: Map<Pos, Int>): List<Pos> {
         if (map[pos] == 9) {
             return listOf(pos)
         }
@@ -32,7 +32,7 @@ class Day10 : MrWolf {
         return Dir.entries
             .map { pos.move(it) }
             .filter { map.containsKey(it) && map[it] == 1 + map[pos]!! }
-            .flatMap { trailheadsFrom(it, map) }
+            .flatMap { findPeaksFrom(it, map) }
     }
 
     private data class Pos(val y: Int, val x: Int) {
