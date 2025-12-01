@@ -3,4 +3,5 @@
 My [Advent of Code](https://adventofcode.com/) puzzle solutions.
 
 2023 `C#` \
-2024 `Kotlin`
+2024 `Kotlin` \
+2025 `TypeScript`
