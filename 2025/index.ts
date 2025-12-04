@@ -4,12 +4,14 @@ import type {MrWolf} from "./core.ts";
 import {day01} from "./solvers/day01.ts";
 import {day02} from "./solvers/day02.ts";
 import {day03} from "./solvers/day03.ts";
+import {day04} from "./solvers/day04.ts";
 
 
 const solvers: Record<number, MrWolf> = {
     1: day01,
     2: day02,
     3: day03,
+    4: day04,
 };
 
 const getSolver = (day: number) => solvers[day] || null;
