@@ -8,6 +8,7 @@ import {day04} from "./solvers/day04.ts";
 import {day05} from "./solvers/day05.ts";
 import {day06} from "./solvers/day06.ts";
 import {day07} from "./solvers/day07.ts";
+import {day08} from "./solvers/day08.ts";
 
 
 const solvers: Record<number, MrWolf> = {
@@ -18,6 +19,7 @@ const solvers: Record<number, MrWolf> = {
     5: day05,
     6: day06,
     7: day07,
+    8: day08,
 };
 
 const getSolver = (day: number) => solvers[day] || null;
