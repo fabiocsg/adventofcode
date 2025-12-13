@@ -12,6 +12,7 @@ import {day08} from "./solvers/day08.ts";
 import {day09} from "./solvers/day09.ts";
 import {day10} from "./solvers/day10.ts";
 import {day11} from "./solvers/day11.ts";
+import {day12} from "./solvers/day12.ts";
 
 
 const solvers: Record<number, MrWolf> = {
@@ -26,9 +27,8 @@ const solvers: Record<number, MrWolf> = {
     9: day09,
     10: day10,
     11: day11,
+    12: day12,
 };
-
-const getSolver = (day: number) => solvers[day] || null;
 
 const solveWithExecutionTime = (name: string, predicate: () => any) => {
     const start = performance.now();
@@ -49,7 +49,7 @@ if (args.length !== 2 || isNaN(Number(args[0])) || !fs.existsSync(args[1])) {
 const [day, inputFilePath] = args;
 const input = fs.readFileSync(inputFilePath, "utf8");
 
-const solver = getSolver(+day);
+const solver = solvers[+day];
 if (!solver) {
     console.log("Not there yet ;)");
     process.exit(0);
